@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+
+  
+
+    
+        .todo-list::-webkit-scrollbar{
+            display: none;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */}
+      
+    }
+
+    input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #6d3a9c00 inset !important;
+  -webkit-text-fill-color: white !important;
+  
+}
