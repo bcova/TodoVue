@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
 import { themeChange } from 'theme-change'
+import { Icon } from '@iconify/vue';
 const todos = ref([]);
 const name = ref("");
 
@@ -170,33 +171,52 @@ onMounted(() => {
               />
              
                 <p v-if="todo.category.charAt(0).toUpperCase() === 'B'"
-                @click="edit"
-                  type="text"
-                  
-                  className="input border-b-2 border-t-0 border-l-0 border-r-0 border-primary w-full max-w-xs rounded-none rounded-tl-md rounded-tr-md focus:outline-none bg-gray-500 bg-opacity-20 caret-primary my-4 peer-checked:border-accent peer-checked:bg-accent peer-checked:bg-opacity-20 transition-colors duration-300" 
-                  
+                  className=" p-2 border-b-2 border-t-0 border-l-0 border-r-0 border-primary w-full max-w-xs rounded-none rounded-tl-md rounded-tr-md focus:outline-none bg-gray-500 bg-opacity-20 caret-primary  peer-checked:border-accent peer-checked:bg-accent peer-checked:bg-opacity-20 transition-colors duration-300" 
                 >{{ todo.content }}</p>
-                <input v-else
-                @click="edit"
-                  type="text"
-                  v-model="todo.content"
-                  className="input border-b-2 border-t-0 border-l-0 border-r-0 border-secondary w-full max-w-xs rounded-none rounded-tl-md rounded-tr-md focus:outline-none bg-gray-500 bg-opacity-20 caret-secondary my-4 peer-checked:border-accent peer-checked:bg-accent peer-checked:bg-opacity-20 transition-colors duration-300"
-                  
-                />
-                
+                <p v-else
+                  className="input border-b-2 border-t-0 border-l-0 border-r-0 border-secondary w-full max-w-xs rounded-none rounded-tl-md rounded-tr-md focus:outline-none bg-gray-500 bg-opacity-20 caret-secondary  peer-checked:border-accent peer-checked:bg-accent peer-checked:bg-opacity-20 transition-colors duration-300">{{ todo.content }}</p>  
             </div>
             <div className="  divider before:bg-zinc-700 after:bg-zinc-700 w-full px-10 ">
               📅: {{ todo.date_time }}
-              <button class="" @click="removeTodo(todo)"><label htmlFor="my-modal-4" className="btn">open modal</label>
-
+              <button class="" ><label htmlFor="my-modal-4" className="btn btn-ghost"><Icon icon="ph:pencil-simple"  class="text-2xl" /></label>
+               
 
 <input type="checkbox" id="my-modal-4" className="modal-toggle" />
 <label htmlFor="my-modal-4" className="modal cursor-pointer">
   <label className="modal-box relative" htmlFor="">
-    <h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+    <h3 className="text-lg font-bold">Edit</h3>
+  <input v-model="todo.content" @click="edit" className="input border-b-2 border-t-0 border-l-0 border-r-0 border-base-200 w-full max-w-xs rounded-none rounded-tl-md rounded-tr-md focus:outline-none bg-gray-500 bg-opacity-20 caret-white my-4 ">
+  <div class="flex justify-center gap-10">
+    <label class="text-center">
+              <input
+                type="radio"
+                name="category"
+                className="radio checked:bg-primary peer/business"
+                value="business"
+                v-model="todo.category"
+              />
+              <div class="peer-checked/business:text-primary transition-all duration-300">
+                Business
+              </div>
+            </label>
+            <label class="text-center">
+              <input
+                type="radio"
+                name="category"
+                className="radio checked:bg-secondary peer/personal"
+                value="personal"
+                v-model="todo.category"
+              />
+              <div
+                class="peer-checked/personal:text-secondary transition-all duration-300"
+              >
+                Personal
+              </div>
+            </label>
+  </div>
   </label>
 </label></button>
+  <button @click="removeTodo(todo)" class="btn btn-ghost" ><icon icon="ph:trash" class="text-2xl"/></button>
             </div>
           </div>
         </div>
